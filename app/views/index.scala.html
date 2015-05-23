@@ -1,0 +1,126 @@
+@(title : String)
+<!DOCTYPE html>
+<html>
+<head>
+<title>@title</title>
+
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="shortcut icon" type="image/png"
+	href="/assets/images/favicon.png">
+
+
+<!-- Styles -->
+ <link rel="stylesheet"
+	href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet"
+	href="/libs/datatables-plugin-bootstrap/dataTables.bootstrap.css" />
+
+<!-- 
+<link rel="stylesheet"
+	href="/stylesheets/bootstrap-icare.css" />
+	 -->
+<link rel="stylesheet"
+	href="/stylesheets/main.css" />
+
+<!--
+<link rel="stylesheet"
+	href="/bower_components/datatables/media/css/jquery.dataTables.css" />
+<link rel="stylesheet"
+	href="/bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.css" />
+  
+
+-->
+
+
+
+<!-- mobile -->
+
+
+
+<!-- Enables internationalization -->
+</head>
+
+<!-- MainCtrl goes on "body" -->
+<body class="app icare-body" data-ng-controller="MainCtrl">
+    <!-- Navigation Bar -->
+
+	<nav class="navbar navbar-default navbar-fixed-top" ng-controller="TabCtrl">
+		<!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1 col-lg-1"></div>
+				<div class="navbar-header" width="200px" >
+					<a class="navbar-brand" ng-click="navigateHome()"> 
+						<img alt="Brand" src="/assets/icons/logo.png">
+					</a>
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" ng-click="navigateHome()">
+						<span class="sr-only">Toggle navigation</span> 
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">My First App</a>
+				</div>
+	
+				<ul class="nav navbar-nav" >
+					<li role="presentation" ng-class="tabClass(tab)"
+						ng-repeat="tab in tabs"><a
+						data-ng-click="iCareCtxt.switchRunningApplication(tab.pid)">{{tab.label}}</a>
+					</li>
+				</ul>
+				<div class="col-md-1 col-lg-1"></div>
+			</div>
+
+		</div>
+	</nav>
+	<!--  Alarm -->
+	<!--
+	<div class="container" >
+		<div class="row">
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<div alarm></div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<div alarm></div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<div alarm></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	  -->
+	
+	<div id="icareApp" class="container" style="height: 100%; padding: 10px" >
+		<div class="row">
+			<div  class="col-lg-10  col-mid-10" ng-view></div>
+		<!-- This is the container where the tabs will render -->		
+		</div>
+	</div>
+
+
+</body>
+
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<!--  
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+  
+  -->
+
+<!-- config.js is the Require JS entry point; PLAY framework will switch to use optimized javascript inside /assets/scripts-min when application is running in Production mode -->
+<!-- http://www.playframework.com/documentation/2.2.1/RequireJS-support -->
+<script src="/bower_components/requirejs/require.js" data-main="/common/config"></script>
+<!--  @helper.requireJs(core = "/bower_components/requirejs/require.js",
+module = "/common/config.js", folder = "common")-->
+</html>

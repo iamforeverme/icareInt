@@ -1,0 +1,22 @@
+{
+  "name": "iCare",
+  "version": "1.0.0",
+  "description": "This is a Smart Nursing System",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamforeverme/iCare.git"
+  },
+  "author": "Yang Yang, Du Xiaochuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamforeverme/iCare/issues"
+  },
+  "homepage": "https://github.com/iamforeverme/iCare"
+}
