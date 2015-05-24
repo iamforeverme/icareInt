@@ -29,8 +29,8 @@ import play.libs.Json;
 public class Application extends Controller {
 
     public static Result index() {
-    	Map<String,String> itWorks = new HashMap<String,String>();
-    	Device device =  Ebean.find(Device.class ,1);
+    	//Map<String,String> itWorks = new HashMap<String,String>();
+    	//Device device =  Ebean.find(Device.class ,1);
     	/*
     	Device device = new Device();
     	device.setMac("cushion");
@@ -38,8 +38,9 @@ public class Application extends Controller {
     	*/
     	
     	
-        itWorks.put("message",device.getMac());
-        return ok(play.libs.Json.toJson(itWorks));
+        //itWorks.put("message",device.getMac());
+        //return ok(play.libs.Json.toJson(itWorks));
+    	return ok(index.render("Welcome to iCare"));
     }
     public static Result protege_inf() {
     	
