@@ -45,6 +45,7 @@ public class Protege extends Model {
 	String photo_dir;
 	Integer age;
 	String monitoring_level;
+	String note;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="protege")
 	List<MonitorData> monitorData;
@@ -60,6 +61,13 @@ public class Protege extends Model {
 	{
 		this.monitorData = data;
 	}
+ 	public List<Location> getLocations(){
+	    return locations;
+	}
+ 	public void setLocations(List<Location> locations){
+	    this.locations = locations;
+	}
+ 	
  	public Integer getId(){
 	    return id;
 	}
@@ -160,6 +168,13 @@ public class Protege extends Model {
  	{
  		return this.id.toString();
  	}
+ 	public String getNote(){
+	    return note;
+	}
+ 	public void setNote(String note){
+	    this.note = note;
+	}
+ 	
 
     public String toJSONString() {
 	

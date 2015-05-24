@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,15 @@ import models.WarningType;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.SqlRow;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import play.*;
 import play.db.ebean.Model;
 import play.mvc.*;
 import play.mvc.Http.RequestBody;
 import views.html.*;
+import play.libs.Json;
 
 public class Application extends Controller {
 
@@ -36,6 +40,37 @@ public class Application extends Controller {
     	
         itWorks.put("message",device.getMac());
         return ok(play.libs.Json.toJson(itWorks));
+    }
+    public static Result protege_inf() {
+    	
+    	List<Protege> proList =  Ebean.find(Protege.class)
+    			.select("name,age,monitoring_level")
+    			.fetch("locations","roomNum,bedNum,device.id")
+    			.where().eq("locations.endDate", null)
+    			.findList();
+    	
+    	
+    	List<Map<String,String>> resultMap = new ArrayList<Map<String, String>>(); 
+    	
+    	for(int i = 0; i < proList.size(); i++)
+        {  
+    		Protege pro = proList.get(i);
+    		Map<String,String> itWorks = new HashMap<String,String>();
+    		itWorks.put("id", pro.getId().toString());
+    		itWorks.put("name", pro.getName());
+    		itWorks.put("age", pro.getAge().toString());
+    		itWorks.put("monitoring_level", pro.getMonitoring_level());
+    		Location loc = pro.getLocations().get(0);
+    		itWorks.put("roomNum", loc.getRoomNum());
+    		itWorks.put("bedNum", loc.getBedNum());
+    		itWorks.put("mac", loc.getDevice().getMac());
+    		
+    		resultMap.add(itWorks);
+        }
+    	ObjectNode result = Json.newObject();
+    	result.put("data", play.libs.Json.toJson(resultMap));
+    	
+        return ok(play.libs.Json.toJson(result));
     }
     public static Result query(String type,Integer id) {
     	Map<String,String> returnMap = new HashMap<String,String>();

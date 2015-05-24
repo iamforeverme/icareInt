@@ -56,6 +56,7 @@ create table protege (
   photo_dir                 varchar(255),
   age                       integer,
   monitoring_level          varchar(255),
+  note                      varchar(255),
   constraint uq_protege_id_card_num unique (id_card_num),
   constraint pk_protege primary key (id))
 ;

@@ -2,6 +2,13 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Data service
+GET          /                           controllers.Application.index()
+GET     	/query/protege_inf                 controllers.Application.protege_inf()
+GET    		/query/:type/:id            controllers.Application.query(type: String, id:Integer)
+#GET     	/update/:type/:id           controllers.Application.update(type: String, id:Integer)	
+
+
 # Home page
 GET     /                           controllers.Application.index()
 
@@ -11,13 +18,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # Client Routes
 GET         /images/*file                                                               controllers.Assets.at(path="/public/images", file)
 GET         /stylesheets/*file                                                          controllers.Assets.at(path="/public/stylesheets", file)
-GET         /common/*file                                                              controllers.Assets.at(path="/public/common", file)
+GET         /common/*file                                                               controllers.Assets.at(path="/public/common", file)
 GET         /bower_components/*file                                                     controllers.Assets.at(path="/public/bower_components", file)
 GET			/app/*file																	controllers.Assets.at(path="/public/app", file)
-GET			/libs/*file																	controllers.Assets.at(path="/public/libs", file)	
-
-
-# Data service
-GET     /                           controllers.Application.index()
-GET     /query/:type/:id            controllers.Application.query(type: String, id:Integer)
-#GET     /update/:type/:id           controllers.Application.update(type: String, id:Integer)													
+GET			/libs/*file																	controllers.Assets.at(path="/public/libs", file)
