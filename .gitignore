@@ -48,3 +48,7 @@ bin/
 logs/
 prject/
 test/
+
+.classpath
+.project
+.settings/org.scala-ide.sdt.core.prefs
