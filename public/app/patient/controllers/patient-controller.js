@@ -6,38 +6,12 @@ define([ 'angular','datatables','datatables-bootstrap'], function(ng) {
     ng.module('controllers').controller('patientController', [
         '$scope','$location',
         function($scope,$location){
-                $scope.data=null;
-                var jsonObj;
-                var xmlhttp = new XMLHttpRequest();
-                var url = "/query/protege_inf";
-                xmlhttp.open("GET", url,true);
-                xmlhttp.onreadystatechange = function(e)
-                {
-                    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                        var result = xmlhttp.responseText;
-                        jsonObj = JSON.parse(result);
-                        $scope.data= jsonObj.data;
-                        $scope.$apply();
-                        console.log(jsonObj);
-                    }
-                    else{
-                        console.log("http request error");
-                    }
-                }
-                xmlhttp.send(null);
-        	    /*$('#patient_info_table').dataTable( {        	    	
-        	        "ajax": "/libs/datagrids.json",
-        	        "columns": [
-        	            { "data": "name"},
-        	            { "data": "position" },
-        	            { "data": "office"},
-        	            { "data": "extn"},
-        	            { "data": "start_date"},
-        	            { "data": "salary"}
-        	        ]
-        	    } );*/
+
                 $('#patient_info_table').dataTable( {  
-                    "ajax":  $scope.data,              
+                    "ajax":  {
+                    	"url": "/query/protege_inf",
+                        "type": "GET"
+                    },          
                     "columns": [
                         { "data": "age"},
                         { "data": "bedNum" },
@@ -46,7 +20,25 @@ define([ 'angular','datatables','datatables-bootstrap'], function(ng) {
                         { "data": "monitoring_level"},
                         { "data": "name"},
                         { "data": "roomNum"}
-                    ]
+                    ],
+                    "language": {
+        	        	"search": "查找",
+        	        	"lengthMenu": "显示 _MENU_ 项结果",
+        	        	"processing":     "处理中......",
+        	        	"info":           "显示第 _START_ 到第 _END_项, 共 _TOTAL_项",
+        	        	"infoEmpty":      "显示第 0 到第 0 条,共 0 条",
+        	            "infoFiltered":   "(从 _MAX_ 项结果中筛选)",
+        	            "infoPostFix":    "",
+        	            "loadingRecords": "数据导入中......",
+        	            "zeroRecords":    "当前无数据",
+        	            "emptyTable":     "",
+        	        	"paginate": {
+        	                "first":      "第一页",
+        	                "previous":   "上一页",
+        	                "next":       "下一页",
+        	                "last":       "最后一页"
+        	        	}
+        	        }
                 } );
         }
     ]);
